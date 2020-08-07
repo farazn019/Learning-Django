@@ -1,7 +1,8 @@
-from django.conf.urls import url
+from django.urls import include, path
 from . import views
 
 urlpatterns = [
-    url('', views.index, name="index")    #If the user just types the website name, then it will take the user to the home page (index).
-
+    #This URL is equivalent to the user typing /music/ in the search bar.
+    path('', views.index, name='index'),
+    path('<int:album_id>/', views.details, name='details')
 ]
