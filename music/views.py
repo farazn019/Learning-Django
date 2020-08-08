@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 from .models import Album
 
 # Create your views here.
@@ -6,12 +7,9 @@ from .models import Album
 
 def index(request):
     all_albums = Album.objects.all()
-    html = ''
-    for album in all_albums:
-        url = '/music/' + str(album.id) + '/'
-        html += '<a href="' + url + '">' + album.album_title + '</a><br>'
+    context = {'all_albums':  all_albums}
+    return render(request, 'templates/music/index.html')
 
-    return HttpResponse(html)
 
 def details(request, album_id):
     return HttpResponse("<h3>The list:</h3>")
